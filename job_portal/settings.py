@@ -122,6 +122,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+EDIA_URL = '/static/media/'  # Serve media files from static folder
+MEDIA_ROOT = BASE_DIR / 'static/media'  # Store media files in the static folde
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 

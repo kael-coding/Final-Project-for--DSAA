@@ -1,0 +1,97 @@
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: rgb(190, 185, 185);
+  }
+  .footer {
+    background: #343a40;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 350px;
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+  }
+
+  .fade-in-delay {
+    opacity: 0;
+    animation: fadeIn 0.2s forwards;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .job-card {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideIn 0.4s forwards;
+  }
+
+  .job-card:nth-child(1) {
+    animation-delay: 0.2s;
+  }
+
+  .job-card:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  .job-card:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes slideIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .btn-primary {
+    opacity: 0;
+    animation: buttonFadeIn 0.2s forwards;
+  }
+
+  .btn-primary:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+
+  @keyframes buttonFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .modal.fade .modal-dialog {
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: modalSlideIn 0.5s forwards;
+  }
+
+  @keyframes modalSlideIn {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
