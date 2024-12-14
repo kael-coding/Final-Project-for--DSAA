@@ -1,0 +1,28 @@
+
+    
+@media (max-width: 991px) {
+    .navbar-collapse {
+        display: none;
+    }
+
+   
+    .navbar-collapse.show {
+        display: block;
+
+    }
+    footer {
+        padding: 15px 0; 
+        font-size: 14px;  
+    }
+}
+
+
+@media (min-width: 992px) {
+    .navbar-collapse {
+        display: block !important;
+    }
+    footer {
+        padding: 15px 0;
+        font-size: 14px; 
+    }
+}
