@@ -1,0 +1,89 @@
+   /* Responsive adjustments for medium screens (max-width: 991px) */
+   @media (max-width: 991px) {
+    /* Adjust navbar to be more user-friendly on smaller screens */
+    .navbar-collapse {
+      display: none;
+    }
+
+    .navbar-collapse.show {
+      display: block;
+    }
+
+    .navbar-toggler {
+      border-color: #fff;
+    }
+
+    .navbar-nav {
+      text-align: center;
+    }
+
+    /* Stack the job cards vertically on medium screens */
+    .col-md-3 {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex: 0 0 100%; /* Make job cards 100% width */
+    }
+
+    .job-card {
+      width: 100%; /* Make job card take full width */
+      margin-bottom: 20px;
+      opacity: 1; /* Ensures that the job cards appear as expected */
+    }
+
+    /* Ensure that cards grow based on content */
+    .card {
+      display: flex;
+      flex-direction: column;
+      height: auto; /* Let the card grow based on content */
+    }
+
+    .card-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px; /* Add padding for spacing */
+    }
+
+    /* Ensure image consistency in smaller cards */
+    .job-card .card img {
+      height: 180px; /* Slightly smaller height on smaller screens */
+      object-fit: cover;
+    }
+
+    /* Adjust footer for mobile view */
+    footer {
+      padding: 15px 0;
+      font-size: 14px;
+    }
+
+    /* For small mobile screens, adjust the modal */
+    .modal-dialog {
+      max-width: 90%;
+    }
+  }
+
+  /* For large screens (992px and up) */
+  @media (min-width: 992px) {
+    .col-md-3 {
+      flex: 0 0 24%; /* Four columns for large screens */
+      max-width: 24%;
+    }
+
+    .navbar-collapse {
+      display: block !important;
+    }
+
+    footer {
+      padding: 15px 0;
+      font-size: 14px;
+    }
+  }
+
+  /* Additional media query for very small screens (max-width: 576px) */
+  @media (max-width: 576px) {
+    .job-card .card img {
+      height: 150px; /* Further reduce image height for small screens */
+    }
+  }
