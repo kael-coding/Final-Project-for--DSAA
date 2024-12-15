@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+from django.http import HttpResponse
 from .forms import SignUpForm, LoginForm, JobForm, JobApplicationForm
 from django.contrib import messages
 from .models import Job
 
 #for the frontpage
-
 def front_index(request):
     return render(request, 'front-page/index.html')
 
@@ -30,26 +29,29 @@ def front_contact(request):
 
 
 def Succes_jobs(request):
-    jobs = Job.objects.all()
+    jobs = Job.objects.all()  # Fetching all job listings
+
     if request.method == 'POST' and 'apply' in request.POST:
         form = JobApplicationForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return JsonResponse({
-                "success": True,
-                "message": "Your application has been submitted successfully."
-            })
+            job_id = request.POST.get('job_id')  # Get the job ID from the POST data
+            if job_id:
+                job = get_object_or_404(Job, id=job_id)  # Retrieve the job instance
+                job_application = form.save(commit=False)
+                job_application.applicant = request.user  # Set the applicant as the current user
+                job_application.job = job  # Associate the job application with the job
+                job_application.save()
+                return HttpResponse("Your application has been submitted successfully.")
+            else:
+                return HttpResponse("Job ID is missing.")
         else:
-            print(form.errors) 
-            return JsonResponse({
-                "success": False,
-                "message": "There was an error with your application.",
-                "errors": form.errors
-            })
-    
+            return HttpResponse("There was an error with your application.")
     else:
         form = JobApplicationForm()
+
+    # Rendering the page with job listings and the form
     return render(request, 'home/jobs.html', {'jobs': jobs, 'form': form})
+
 
 def Succes_post_jobs(request):
     if request.method == 'POST':
