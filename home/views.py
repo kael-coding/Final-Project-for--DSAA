@@ -29,19 +29,19 @@ def front_contact(request):
 
 
 def Succes_jobs(request):
-    jobs = Job.objects.all()  # Fetching all job listings
-
+    jobs = Job.objects.all() 
     if request.method == 'POST' and 'apply' in request.POST:
         form = JobApplicationForm(request.POST, request.FILES)
         if form.is_valid():
-            job_id = request.POST.get('job_id')  # Get the job ID from the POST data
+            job_id = request.POST.get('job_id') 
             if job_id:
-                job = get_object_or_404(Job, id=job_id)  # Retrieve the job instance
+                job = get_object_or_404(Job, id=job_id)  
                 job_application = form.save(commit=False)
-                job_application.applicant = request.user  # Set the applicant as the current user
-                job_application.job = job  # Associate the job application with the job
+                job_application.applicant = request.user  
+                job_application.job = job  
                 job_application.save()
-                return HttpResponse("Your application has been submitted successfully.")
+                messages.success(request, "Your application has been submitted successfully.")
+                return redirect('Sjobs')  
             else:
                 return HttpResponse("Job ID is missing.")
         else:
@@ -49,7 +49,7 @@ def Succes_jobs(request):
     else:
         form = JobApplicationForm()
 
-    # Rendering the page with job listings and the form
+   
     return render(request, 'home/jobs.html', {'jobs': jobs, 'form': form})
 
 
